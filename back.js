@@ -36,8 +36,8 @@ app.post('/sendEmail',(req,res)=> {
     const imagenProducto = producto.producto.imagen;
 
     const mailOptions = {
-        from:'facundoiba95@gmail.com',
-        to: producto.emailValue,
+        from:producto.emailValue,
+        to:'mindmueblesok@gmail.com',
         subject:'consulta de producto',
          html: `Datos del cliente:<br/>
          Nombre: ${nombreCliente},<br/>

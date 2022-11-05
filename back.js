@@ -53,7 +53,13 @@ app.post('/sendEmail',(req,res)=> {
     }
 
     transporter.sendMail(mailOptions,(error,info)=> {
-        error ? console.log(error) : console.log('Email enviado', info.response)
+        if(error){
+            console.log(error)
+             res.status()
+        } else {
+            console.log('Email enviado', info.response)
+            res.status(200).send('Email enviado!')
+        }
     })
     
 })

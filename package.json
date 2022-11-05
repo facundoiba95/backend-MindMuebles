@@ -4,7 +4,8 @@
   "description": "backend de mind muebles",
   "main": "back.js",
   "scripts": {
-    "test": "node back.js"
+    "test": "node back.js",
+    "start": "node back.js"
   },
   "author": "facundo ibañez gambarte",
   "license": "ISC",

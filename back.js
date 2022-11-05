@@ -17,6 +17,9 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+app.get('7',(req,res)=> {
+    res.send('la pagina cargo correctamente')
+})
 
 app.post('/sendEmail',(req,res)=> {
     const producto = req.body;

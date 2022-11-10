@@ -66,7 +66,35 @@ app.post('/sendEmail',(req,res)=> {
 
 app.post('/sendEmailContacto', (req,res) => {
     const consulta = req.body;
-console.log(consulta)
+    
+    const nombreContacto = consulta.nombreValue;
+    const emailContacto = consulta.emailValue;
+    const celularContacto = consulta.celularValue;
+    const consultaContacto = consulta.consultaValue;
+    const localidadConctacto = consulta.localidadValue;
+
+    const mailOptions = {
+        from: consulta.emailContacto,
+        to: 'mindmueblesok@gmail.com',
+        subject: 'consulta general',
+        html: `Datos del cliente: <br/>
+        Nombre: "${nombreContacto}", <br/>
+        Email: "${emailContacto}", <br/>
+        Localidad: "${localidadConctacto}", <br/>
+        Celular: ${celularContacto},<br/><br/>
+        Consulta: <br/>
+        "${consultaContacto}".`
+    }
+
+    transporter.sendMail(mailOptions,(error,info)=> {
+        if(error){
+            {console.log(error)
+            res.status()}
+        } else {
+            console.log('Email enviado', info.response)
+            res.status(200).send('Email enviado!')
+        }
+    })
 })
 
 

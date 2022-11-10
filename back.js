@@ -17,13 +17,13 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-app.get('7',(req,res)=> {
+app.get('/',(req,res)=> {
     res.send('la pagina cargo correctamente')
 })
 
 app.post('/sendEmail',(req,res)=> {
     const producto = req.body;
-    console.log(producto)
+   
     const nombreCliente = producto.nombreValue;
     const emailCliente = producto.emailValue;
     const localidadCliente = producto.localidadValue;
@@ -36,32 +36,37 @@ app.post('/sendEmail',(req,res)=> {
     const imagenProducto = producto.producto.imagen;
 
     const mailOptions = {
-        from:producto.emailValue,
+        from: producto.emailValue,
         to:'mindmueblesok@gmail.com',
         subject:'consulta de producto',
-         html: `Datos del cliente:<br/>
-         Nombre: ${nombreCliente},<br/>
-         eMail: ${emailCliente},<br/>
-         Numero de telefono: ${celularCliente}<br/>
-         Localidad: ${localidadCliente}.<br/>
-         Consulta: "${consultaCliente}".<br/><br/>
-         Ha consultado por el producto:<br/>
-         Producto: "${nombreProducto}",<br/>
-         id: "${idProducto}",<br/>
-         Categoria: "${categoriaProducto}"<br/>
-         <img src="${imagenProducto}" name="img" alt="imagen de producto" width=500px heigth=300px> `
+        html: `Datos del cliente:<br/>
+        Nombre: ${nombreCliente},<br/>
+        eMail: ${emailCliente},<br/>
+        Numero de telefono: ${celularCliente}<br/>
+        Localidad: ${localidadCliente}.<br/>
+        Consulta: "${consultaCliente}".<br/><br/>
+        Ha consultado por el producto:<br/>
+        Producto: "${nombreProducto}",<br/>
+        id: "${idProducto}",<br/>
+        Categoria: "${categoriaProducto}"<br/>
+        <img src="${imagenProducto}" alt="imagen de producto" width=500px heigth=300px> `
     }
 
     transporter.sendMail(mailOptions,(error,info)=> {
         if(error){
-            console.log(error)
-             res.status()
+            {console.log(error)
+            res.status()}
         } else {
             console.log('Email enviado', info.response)
             res.status(200).send('Email enviado!')
         }
     })
     
+})
+
+app.post('/sendEmailContacto', (req,res) => {
+    const consulta = req.body;
+console.log(consulta)
 })
 
 
